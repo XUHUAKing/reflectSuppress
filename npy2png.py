@@ -29,15 +29,16 @@ for folder2 in folders2[::5]:
         tmp_M = imgs[2*idx+1]
         val_items.append(tmp_M)
         print(tmp_M)
+val_items = val_items[::3]
 print('Data load succeed!')
 
 for m_name in val_items:
-    import pdb; pdb.set_trace()
     m_img = 0.5*np.load(m_name)[0,:,:,-1]
     h,w = m_img.shape[:2]
     h = h // 32 *32
     w = w // 32 *32
-    m_img = m_img[:h:2, :w:2]
+    # m_img = m_img[:h:2, :w:2]
+    m_img = m_img[:h, :w]
     # crop between 0, 1
     m_img[m_img<0] = 0
     m_img[m_img>1] = 1
